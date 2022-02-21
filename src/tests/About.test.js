@@ -21,8 +21,8 @@ describe('Teste se a página contém as informações sobre a Pokédex.', () => 
 
   test('Teste se a página contém a imagem de uma Pokédex:', () => {
     renderWithRouter(<About />);
-    const getImage = screen
-      .getByRole('img', { src: 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png' });
-    expect(getImage).toBeInTheDocument();
+    const imgLink = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
+    const getImage = screen.getByRole('img');
+    expect(getImage.src).toBe(imgLink);
   });
 });
