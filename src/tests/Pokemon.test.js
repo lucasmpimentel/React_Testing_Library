@@ -8,7 +8,7 @@ describe('Teste se é renderizado um card com as informações de determinado po
   () => {
     test('O nome correto do Pokémon deve ser mostrado na tela', () => {
       renderWithRouter(<App />);
-      const getPokemonName = screen.getByTestId('pokemon-name');
+      const getPokemonName = screen.getByText(/pikachu/i);
       expect(getPokemonName).toHaveTextContent(/pikachu/i);
       const getBug = screen.getByRole('button', { name: /bug/i });
       userEvent.click(getBug);
@@ -41,18 +41,19 @@ describe('Teste se é renderizado um card com as informações de determinado po
       renderWithRouter(<App />);
       const getPikachuImg = 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png';
       const getCaterpieImg = 'https://cdn2.bulbagarden.net/upload/8/83/Spr_5b_010.png';
-      const getPokemonName = screen.getByTestId('pokemon-name').textContent;
+      const getPokemonName = screen.getByTestId('pokemon-name');
+      const { textContent } = getPokemonName;
       const getPokemonImg = screen.getByRole('img');
       const { src: Img, alt } = getPokemonImg;
       expect(Img).toBe(getPikachuImg);
-      expect(alt).toBe(`${getPokemonName} sprite`);
+      expect(alt).toBe(`${textContent} sprite`);
       const getBug = screen.getByRole('button', { name: /bug/i });
       userEvent.click(getBug);
-      const getPokemonName2 = screen.getByTestId('pokemon-name').textContent;
+      const getCaterpieName = screen.getByTestId('pokemon-name').textContent;
       const getPokemonImg2 = screen.getByRole('img');
       const { src: Img2, alt: alt2 } = getPokemonImg2;
       expect(Img2).toBe(getCaterpieImg);
-      expect(alt2).toBe(`${getPokemonName2} sprite`);
+      expect(alt2).toBe(`${getCaterpieName} sprite`);
     });
   });
 
