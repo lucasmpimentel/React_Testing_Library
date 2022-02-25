@@ -6,20 +6,19 @@ import App from '../App';
 
 describe('Teste o topo da aplicação contém um conjunto fixo de links de navegação.',
   () => {
+    beforeEach(() => renderWithRouter(<App />));
+
     test('O primeiro link deve possuir o texto Home', () => {
-      renderWithRouter(<App />);
       const homeLink = screen.getByRole('link', { name: /Home/i });
       expect(homeLink).toBeInTheDocument();
     });
 
     test('O segundo link deve possuir o texto About', () => {
-      renderWithRouter(<App />);
       const aboutLink = screen.getByRole('link', { name: /about/i });
       expect(aboutLink).toBeInTheDocument();
     });
 
     test('O terceiro link deve possuir o texto Favorite Pokémons', () => {
-      renderWithRouter(<App />);
       const favLink = screen.getByRole('link', { name: /favorite pokémons/i });
       expect(favLink).toBeInTheDocument();
     });

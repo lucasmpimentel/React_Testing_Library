@@ -6,8 +6,9 @@ import App from '../App';
 
 describe('Teste se é renderizado um card com as informações de determinado pokémon',
   () => {
+    beforeEach(() => renderWithRouter(<App />));
+
     test('O nome correto do Pokémon deve ser mostrado na tela', () => {
-      renderWithRouter(<App />);
       const getPokemonName = screen.getByText(/pikachu/i);
       expect(getPokemonName).toHaveTextContent(/pikachu/i);
       const getBug = screen.getByRole('button', { name: /bug/i });
@@ -16,7 +17,6 @@ describe('Teste se é renderizado um card com as informações de determinado po
     });
 
     test('O tipo correto do pokémon deve ser mostrado na tela.', () => {
-      renderWithRouter(<App />);
       const getPokemonType = screen.getByTestId('pokemon-type');
       expect(getPokemonType).toHaveTextContent(/electric/i);
       const getBug = screen.getByRole('button', { name: /bug/i });
@@ -25,7 +25,6 @@ describe('Teste se é renderizado um card com as informações de determinado po
     });
 
     test('O peso médio do pokémon deve ser exibido de forma correta', () => {
-      renderWithRouter(<App />);
       const caterpieWeight = 'Average weight: 2.9 kg';
       const pikachuWeight = 'Average weight: 6.0 kg';
       const getPokemonWeight = screen.getByTestId('pokemon-weight');
@@ -38,7 +37,6 @@ describe('Teste se é renderizado um card com as informações de determinado po
     // Usei essa sugestão do .textContent pra conseguir pegar o nome através do testId
     // https://stackoverflow.com/questions/61654862/how-to-get-the-value-of-the-span-element-with-testid-using-react-testing-library
     test('A imagem do Pokémon deve ser exibida', () => {
-      renderWithRouter(<App />);
       const getPikachuImg = 'https://cdn2.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png';
       const getCaterpieImg = 'https://cdn2.bulbagarden.net/upload/8/83/Spr_5b_010.png';
       const getPokemonName = screen.getByTestId('pokemon-name');
