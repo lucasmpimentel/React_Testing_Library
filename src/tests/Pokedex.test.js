@@ -68,7 +68,6 @@ describe('Teste se a Pokédex tem os botões de filtro.', () => {
         const nextBtnDisabled = screen
           .getByTestId('next-pokemon')
           .getAttribute('disabled');
-        console.log(nextBtnDisabled);
         if (nextBtnDisabled) {
           userEvent.click(getNextButton);
           expect(getPokemonType()).toBe(type);
